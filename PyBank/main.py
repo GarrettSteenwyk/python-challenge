@@ -5,7 +5,6 @@ csvpath = os.path.join('Resources', 'budget_data.csv')
 
 months = []
 profit = []
-
 with open(csvpath, encoding='UTF-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_header = next(csvreader)
@@ -16,4 +15,8 @@ with open(csvpath, encoding='UTF-8') as csvfile:
 
 profit = list(map(int, profit))
 change = [t - s for s, t in zip(profit, profit[1:])]
-max(change)
+profit_high = max(change)
+profit_low = min(change)
+profitavg = sum(change)/len(change)
+profit_high_months = months[change.index(profit_high)+1]
+profit_low_months = months[change.index(profit_low)+1]
